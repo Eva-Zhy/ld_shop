@@ -1,20 +1,17 @@
 <template>
-  <div>
   <div id="app">
-    <demo-header></demo-header>
+    <!--<demo-header></demo-header>-->
     <router-view></router-view>
-    <demo-footer></demo-footer>
-  </div>
+    <!--<demo-footer></demo-footer>-->
+    <v-bottomBar></v-bottomBar>
   </div>
 </template>
 <script>
-  import DemoHeader from './components/DemoHeader'
-  import DemoFooter from './components/DemoFooter'
+  import BottomBar from './components/BottomBar/BottomBar'
   export default {
     name: 'app',
     components: {
-      'demo-header':DemoHeader,
-      'demo-footer':DemoFooter,
+      'v-bottomBar': BottomBar
     }
   }
 </script>
@@ -22,8 +19,18 @@
   #app {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    background-color: aliceblue;
+    width: 100%;
+    height: auto;
+    float: left;
+  }
+
+  body,html{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .img100{
+    width: 100%;
+    height: 100%;
   }
 </style>

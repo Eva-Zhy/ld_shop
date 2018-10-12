@@ -22,20 +22,30 @@
         </div>
       </div>
       <button @click="func()" class="btn btn-default">点击跳转</button>
+      <v-GoodsInfo :selectedGoods="selectedGoods" ref="VGoodsInfo"></v-GoodsInfo>
     </div>
   </div>
 </template>
 <script>
+  import GoodsInfo from 'components/GoodsInfo/GoodsInfo.vue';
   export default({
     name:'header2',
     data () {
       return {
-        'nav-btn': 'nav-btn'
+        'nav-btn': 'nav-btn',
+        selectedGoods: "1234"
       }
     },
+    components: {
+      'v-GoodsInfo': GoodsInfo
+    },
     methods:{
-      func (){
-        this.$router.push({name: 'myAbout',params:{ id:'1'}});
+      func (food, event){
+//        this.$router.push({name: 'myAbout',params:{ id:'1'}});
+          if (!event._constructed) {
+            return;
+          }
+          this.$refs.VGoodsInfo.show();
       }
     }
   })
