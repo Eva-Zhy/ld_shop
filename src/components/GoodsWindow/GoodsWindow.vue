@@ -1,60 +1,72 @@
 <template>
-    <div class="window_v">
-      <div class="window_data" v-for="(item,index) in windowData" :key="index">
-          <div class="window_img" @click="goGoodsInfo(index)">
-            <img class="img100" src="./fangkuai.jpeg" />
-          </div>
-          <div class="window_name">
-              {{item.name}}
-          </div>
-          <div class="window_price">
-            ¥{{item.price}}
-          </div>
+  <div class="window_v">
+    <div v-if="index < 3" class="window_data" v-for="(item,index) in windowData[0].products" :key="index">
+      <div class="window_img" @click="goGoodsInfo(item.md5)">
+        <img class="img100" :src="item.pic_url"/>
+      </div>
+      <div class="window_name">
+        {{item.name}}
+      </div>
+      <div class="window_price">
+        <span>¥{{item.price[0]}}</span><span v-if="item.price[1]">-{{item.price[1]}}</span>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
-    export default {
-      name:"GoodsWindow",
-      props: {
-        windowData: {
-          type: Array
-       }
-      },methods:{
-        goGoodsInfo (index) {
-          this.$emit('ClickGoodsInfo', index)
-        }
+  export default {
+    name: "GoodsWindow",
+    props: {
+      windowData: {
+        type: Array
       }
+    },
+    methods: {
+      goGoodsInfo (md5) {
+        this.$emit('ClickGoodsInfo', md5)
+      }
+    },
+    beforeMount() {
+//      this.windowData = this.windowData.products;
+//      console.log('window',this.windowData);
     }
+  }
 </script>
 
 <style scoped>
-  .window_v{
+  .window_v {
     width: 100%;
-    height: 170px;
+    height: auto;
     float: left;
-    display: flex;
+    /*display: flex;*/
+    background-color: #fff;
   }
+
   .window_data {
-    flex: 1;
+    /*flex: 1;*/
+    width: 30%;
+    float: left;
     margin: 5px;
     border: 1px solid #e8e8e8;
   }
-  .window_img{
+
+  .window_img {
     width: 90%;
     height: 100px;
     float: left;
     margin-left: 5%;
     margin-top: 2%;
   }
-  .window_name{
+
+  .window_name {
     width: 100%;
     float: left;
     text-align: center;
     margin-top: 5px;
   }
-  .window_price{
+
+  .window_price {
     width: 100%;
     float: left;
     text-align: center;

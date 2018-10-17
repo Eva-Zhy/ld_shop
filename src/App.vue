@@ -24,12 +24,14 @@
     float: left;
   }
 
-  body,html{
+  body, html {
     width: 100%;
     margin: 0;
     padding: 0;
+    background-color: #f1f1f1;
   }
-  .img100{
+
+  .img100 {
     width: 100%;
     height: 100%;
   }
