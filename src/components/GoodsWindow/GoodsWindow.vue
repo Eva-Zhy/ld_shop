@@ -1,6 +1,7 @@
 <template>
   <div class="window_v">
-    <div v-if="index < 3" class="window_data" v-for="(item,index) in windowData[0].products" :key="index">
+    <div v-if="windowType == 'home'">
+    <div class="window_data" v-for="(item,index) in windowData" :key="index">
       <div class="window_img" @click="goGoodsInfo(item.md5)">
         <img class="img100" :src="item.pic_url"/>
       </div>
@@ -9,6 +10,21 @@
       </div>
       <div class="window_price">
         <span>¥{{item.price[0]}}</span><span v-if="item.price[1]">-{{item.price[1]}}</span>
+      </div>
+    </div>
+    </div>
+
+    <div v-if="windowType == 'sort'">
+      <div class="window_data" v-for="(item,index) in windowData[$store.state.sortIndex].products" :key="index">
+        <div class="window_img" @click="goGoodsInfo(item.md5)">
+          <img class="img100" :src="item.pic_url"/>
+        </div>
+        <div class="window_name">
+          {{item.name}}
+        </div>
+        <div class="window_price">
+          <span>¥{{item.price[0]}}</span><span v-if="item.price[1]">-{{item.price[1]}}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -20,7 +36,9 @@
     props: {
       windowData: {
         type: Array
-      }
+      },
+      windowType:"",
+      sortIndex: 0
     },
     methods: {
       goGoodsInfo (md5) {
@@ -49,6 +67,8 @@
     float: left;
     margin: 5px;
     border: 1px solid #e8e8e8;
+    padding-bottom: 8px;
+    padding-top: 4px;
   }
 
   .window_img {
@@ -69,6 +89,9 @@
   .window_price {
     width: 100%;
     float: left;
+    margin-top: 5px;
+    color: #cd8870;
+    font-size: 13px;
     text-align: center;
   }
 </style>

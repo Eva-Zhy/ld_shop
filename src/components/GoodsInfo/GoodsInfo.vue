@@ -41,21 +41,23 @@
           <div class="bar_item2">
             <router-link to="/shopcar">
               <div class="shopcar_img" @click="changePageStatus1">
-                <img class="img100" src="./gwc2.png"/>
+                <img class="img100" src="https://www.ludianvr.com/ldvr/h5/shop/img/gwc2.png"/>
               </div>
             </router-link>
           </div>
         </div>
       </div>
     </transition>
-    <v-SelectGoods :SelectGoods="goodsData" :minPrice="minPrice" :maxPrice="maxPrice" :sureType="sureType"
+    <v-SelectGoods  @GoOrder="goOrder" :SelectGoods="goodsData" :minPrice="minPrice" :maxPrice="maxPrice" :sureType="sureType"
                    ref="V_SelectGoods"></v-SelectGoods>
+    <v-Order @back="back" :orderData="$store.state.orderData" ref="V_Order"></v-Order>
   </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
   import BackView from '../BackView/BackView'
   import SelectGoods from '../SelectGoods/SelectGoods'
+  import Order from '../Order/Order'
   export default {
     props: {},
     data () {
@@ -97,6 +99,10 @@
       }
     },
     methods: {
+      goOrder(){
+        console.log("goOrder");
+        this.$refs.V_Order.show();
+      },
       changePageStatus1() {
         this.$store.state.page_status = 1
       },
@@ -131,7 +137,8 @@
     },
     components: {
       "v-BackView": BackView,
-      "v-SelectGoods": SelectGoods
+      "v-SelectGoods": SelectGoods,
+      'v-Order': Order
     },
     created() {
     }

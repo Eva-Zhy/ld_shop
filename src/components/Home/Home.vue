@@ -2,20 +2,17 @@
   <div>
     <div class="home">
       <v-swiper></v-swiper>
-      <!--<v-navBar :navData="scenceData"  @ClickGoodsSort="ClickGoodsSort"></v-navBar>-->
       <div v-for="(item,index) in windowData" :key="index">
-        <v-navBar :navData="item"></v-navBar>
-        <v-goodsWindow @ClickGoodsInfo="ClickGoodsInfo" :windowData="item.projects"></v-goodsWindow>
+        <v-navBar :windowType="windowType" :navData="item.project"></v-navBar>
+        <v-goodsWindow @ClickGoodsInfo="ClickGoodsInfo" :windowType="windowType" :windowData="item.products"></v-goodsWindow>
       </div>
-      <!--<v-navBar :navData="scenceData"></v-navBar>-->
-      <!--<v-goodsWindow @ClickGoodsInfo="ClickGoodsInfo" :windowData="goodsData"></v-goodsWindow>-->
       <v-contactUs></v-contactUs>
     </div>
     <v-goodsInfo  ref="V_GoodsInfo"></v-goodsInfo>
   </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
   import Swiper from '../Swiper/Swiper'
   import NavBar from '../NavBar/NavBar'
   import GoodsWindow from '../GoodsWindow/GoodsWindow'
@@ -26,6 +23,7 @@
     data () {
       return {
         scenceData: ["消防", "工地", "医疗", "刑侦"],
+        windowType: "home",
         goodsData: [
           {
             img: '',
@@ -49,7 +47,8 @@
       };
     },
     created() {
-      this.$http.post("https://ludianvr.com/test/wxmarket/goods", {openid: "ohC2k1AxAXB4tG8wFO_ao36ZrmlA"}, {emulateJSON: true})
+      this.$http.post("https://ludianvr.com/test/wxmarket/goods", {
+        openid: wxUserObj.openid}, {emulateJSON: true})
         .then(
           (response) => {
             response = response.body;

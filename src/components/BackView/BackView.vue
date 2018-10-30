@@ -23,20 +23,23 @@
 <style scoped>
   .back-v{
     width: 100%;
-    height: 30px;
+    height: 40px;
     background: #fff;
     float: left;
     text-align: center;
-    line-height: 30px;
+    line-height: 40px;
+    font-size: 18px;
   }
   .back-img{
-    width: 15px;
-    height:15px;
+    width: 25px;
+    height:25px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 5px;
   }
   .back-d{
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     position: absolute;
-    left: 10px;
   }
 </style>

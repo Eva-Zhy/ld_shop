@@ -92,10 +92,10 @@
         showFlag: false,
         listShow: false,
         have_city: true,
-        name: '',
-        phone: '',
-        address: '',
-        cityValue: '省/市/区/街道',
+        name: this.$store.state.addressData.name,
+        phone: this.$store.state.addressData.phone,
+        address: this.$store.state.addressData.address,
+        cityValue: this.$store.state.addressData.cityStr,
         backTitle: "收货地址",
         cityType: '0',
         province: [],
@@ -153,13 +153,36 @@
         } else if (this.isNull0(this.address)) {
           this.$toast("详细地址有误");
         } else {
-          this.$store.state.addressData.name = this.name;
-          this.$store.state.addressData.phone = this.phone;
-          this.$store.state.addressData.address = this.address;
-          this.$store.state.addressData.city = this.cityValue;
-          this.$toast("保存成功");
-          this.showFlag = false;
-          console.log(this.$store.state.addressData);
+          this.$http.post("https://ludianvr.com/test/wxmarket/edituseraddress", {
+              openid: wxUserObj.openid,
+              name:this.name,
+              phonenumber:this.phone,
+              province: this.province_selected,
+              district: this.district_selected,
+              street: this.street_selected,
+              address: this.address
+            }, {emulateJSON: true})
+            .then(
+              (response) => {
+                response = response.body;
+                if (response.status.state == 28001) {
+                  this.$store.state.addressData.name = this.name;
+                  this.$store.state.addressData.phone = this.phone;
+                  this.$store.state.addressData.address = this.address;
+                  this.$store.state.addressData.cityStr = this.cityValue;
+
+                  this.$store.state.addressData.province = this.province_selected;
+                  this.$store.state.addressData.district = this.district_selected;
+                  this.$store.state.addressData.street = this.street_selected;
+                  this.$toast("保存成功");
+                  this.showFlag = false;
+                  console.log(this.$store.state.addressData);
+                }
+              },
+              (error) => {
+                console.log(error);
+              }
+            );
         }
       },
       isNull0(data) {
@@ -171,6 +194,10 @@
       },
       show() {
         this.showFlag = true;
+        this.name = this.$store.state.addressData.name;
+          this.phone = this.$store.state.addressData.phone;
+          this.address = this.$store.state.addressData.address;
+          this.cityValue =this.$store.state.addressData.cityStr;
       },
       back() {
         this.showFlag = false;

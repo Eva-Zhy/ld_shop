@@ -65,43 +65,7 @@
       return {
         orderData: {},
         shopCarData: [
-          {
-            img: '',
-            title: 'VR农村防火安全',
-            info: '套餐A 自选内容：场景1，场景2，场景3，场景4',
-            price: "￥1111",
-            selected: false
-          }, {
-            img: '',
-            title: 'VR农村防火安全',
-            info: '套餐A 自选内容：场景1，场景2，场景3，场景4',
-            price: "￥1111",
-            selected: false
-          }, {
-            img: '',
-            title: 'VR农村防火安全',
-            info: '套餐A 自选内容：场景1，场景2，场景3，场景4',
-            price: "￥1111",
-            selected: false
-          }, {
-            img: '',
-            title: 'VR农村防火安全',
-            info: '套餐A 自选内容：场景1，场景2，场景3，场景4',
-            price: "￥1111",
-            selected: false
-          }, {
-            img: '',
-            title: 'VR农村防火安全',
-            info: '套餐A 自选内容：场景1，场景2，场景3，场景4',
-            price: "￥1111",
-            selected: false
-          }, {
-            img: '',
-            title: 'VR农村防火安全',
-            info: '套餐A 自选内容：场景1，场景2，场景3，场景4',
-            price: "￥1111",
-            selected: false
-          }
+
         ]
       }
     },
@@ -168,7 +132,6 @@
       goOrder(){
         if (this.orders == 0) {
           this.$toast("请选择需要购买的商品");
-
         } else {
           this.$store.state.orderData = [];
           for (let i = 0; i < this.$store.state.shopCarData.length; i++) {

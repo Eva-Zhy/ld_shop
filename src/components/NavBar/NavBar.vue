@@ -1,7 +1,14 @@
 <template>
   <div class="nav_bar">
-    <div class="nav_data_item" v-for="(item,index) in navData.projects" :key="index" @click="goGoodsSort(index)">
-      <router-link :to="'/goodssort?name='+ navData.category + '&index=' + index">
+    <!--<div v-if="windowType==='home'" class="nav_data_item" v-for="(item,index) in navData" :key="index" @click="goGoodsSort(index)">-->
+    <div v-if="windowType==='home'" class="nav_data_item">
+      <!--<router-link :to="'/goodssort?name='+ navData.category + '&index=' + index">-->
+        {{navData}}
+      <!--</router-link>-->
+    </div>
+
+    <div v-if="windowType==='sort'" class="nav_data_item" v-for="(item,index) in navData" :key="index" @click="goGoodsSort(index)">
+      <router-link :to="'/goodssort?name='+ $store.state.sortName + '&index=' + index">
         {{item.project}}
       </router-link>
     </div>
@@ -11,16 +18,28 @@
 <script>
   export default {
     methods: {
-      goGoodsSort (index) {
+      goGoodsSort (index){
         console.log(index);
+        this.$store.state.sortIndex = index;
+        this.$store.state.page_status = 2;
+
+
+
+//        alert(wxUserObj.openid);
+//        console.log( this.$store.state.page_status);
 //          this.$emit('ClickGoodsSort', index)
       }
     },
     props: {
       navData: {
+      },
+      windowType:''
+    },
+    data() {
+      return {
+
       }
     }
-
   }
 </script>
 

@@ -107,11 +107,13 @@
         this.goods_count++;
       },
       suer() {
+        console.log(this.sureType);
         if (!isNaN(this.price)) {
           if (this.sureType == "car") {
             let goods = {};
             console.log(this.SelectGoods);
             goods.title = this.SelectGoods.name;
+            goods.md5 = this.$store.state.selectedMd5;
             goods.img = this.SelectGoods.purchase_img_url;
             goods.info = "";
             goods.count = this.goods_count;
@@ -122,12 +124,40 @@
               for (let o = 0; o < this.SelectGoods.config[i].options.length; o++) {
                 if (this.SelectGoods.config[i].options[o]['selStatus']) {
                   goods.info += " " + this.SelectGoods.config[i].options[o].option;
+                  console.log(this.SelectGoods.config[i].options[o]);
+                  goods.config_md5 = this.SelectGoods.config[i].options[o].md5;
                 }
               }
             }
             this.$store.state.shopCarData.push(goods);
             this.$toast("添加购物车成功");
+            console.log(this.$store.state.shopCarData);
             this.listShow = false;
+          } else if (this.sureType == "buy") {
+            this.$store.state.orderData = [];
+            let goods = {};
+            console.log(this.SelectGoods);
+            goods.title = this.SelectGoods.name;
+            goods.img = this.SelectGoods.purchase_img_url;
+            goods.md5 = this.$store.state.selectedMd5;
+            goods.info = "";
+            goods.count = this.goods_count;
+            goods.price = this.price / this.goods_count;
+            goods.selStatus = false;
+            for (let i = 0; i < this.SelectGoods.config.length; i++) {
+              goods.info += this.SelectGoods.config[i].name;
+              for (let o = 0; o < this.SelectGoods.config[i].options.length; o++) {
+                if (this.SelectGoods.config[i].options[o]['selStatus']) {
+                  goods.info += " " + this.SelectGoods.config[i].options[o].option;
+                  goods.config_md5 = this.SelectGoods.config[i].options[o].md5;
+                }
+              }
+            }
+            this.$store.state.orderData.push(goods);
+//            this.$toast("添加购物车成功");
+            console.log(this.$store.state.orderData);
+            this.listShow = false;
+            this.$emit('GoOrder');
           }
         } else {
           console.log(111111);
@@ -155,7 +185,8 @@
                 amount: item2[u].amount,
                 price: item2[u].price,
                 rule: item2[u].rule,
-                option: item2[u].option
+                option: item2[u].option,
+                md5: item2[u].md5
               });
             } else {
               this.$set(item2, u, {
@@ -163,7 +194,8 @@
                 amount: item2[u].amount,
                 price: item2[u].price,
                 rule: item2[u].rule,
-                option: item2[u].option
+                option: item2[u].option,
+                md5: item2[u].md5
               });
             }
           }
@@ -201,13 +233,11 @@
     background-color: #ff7049;
     border-radius: 15px;
   }
-
   .btn_div {
     width: 100%;
     height: 50px;
     float: left;
   }
-
   .num {
     width: 30px;
     height: 15px;
@@ -216,7 +246,6 @@
     float: left;
     font-size: 11px;
   }
-
   .jian {
     width: 20px;
     height: 15px;
@@ -225,7 +254,6 @@
     float: left;
     font-size: 12px;
   }
-
   .jia {
     width: 20px;
     height: 15px;
@@ -234,7 +262,6 @@
     float: right;
     font-size: 12px;
   }
-
   .add_div {
     width: 70px;
     height: 15px;
@@ -244,15 +271,12 @@
     border-radius: 5px;
     border: 1px solid #d7d7d7;
   }
-
   .num_text {
     float: left;
   }
-
   .num_text {
     float: left;
   }
-
   .num_div {
     width: 100%;
     height: 35px;
@@ -262,7 +286,6 @@
     padding-left: 5%;
     float: left;
   }
-
   .item {
     width: auto;
     padding: 2px 10px;
@@ -273,7 +296,6 @@
     border-radius: 5px;
     font-size: 12px;
   }
-
   .item_sel {
     width: auto;
     padding: 2px 10px;
@@ -286,7 +308,6 @@
     border-radius: 5px;
     font-size: 12px;
   }
-
   .item_div {
     width: 95%;
     height: auto;
@@ -296,7 +317,6 @@
     padding-bottom: 20px;
     border-bottom: 1px solid #cdcdcd;
   }
-
   .title {
     width: 95%;
     height: 20px;
@@ -306,52 +326,44 @@
     font-size: 13px;
     margin-top: 10px;
   }
-
   .select_div {
     width: 100%;
     height: auto;
     float: left;
   }
-
   .package {
     width: 100%;
     height: 30px;
     float: left;
   }
-
   .inventory {
     width: 100%;
     height: 30px;
     float: left;
   }
-
   .price {
     width: 100%;
     height: 30px;
     float: left;
     margin-top: 15px;
   }
-
   .goods_info {
     width: 60%;
     height: 100%;
     float: left;
     margin-left: 5%;
   }
-
   .goods_img {
     width: 28%;
     float: left;
     margin-left: 5%;
     margin-top: 15px;
   }
-
   .info {
     width: 100%;
     height: auto;
     float: left;
   }
-
   .selectGoods-list {
     width: 100%;
     height: auto;
@@ -366,7 +378,6 @@
     background-color: #fff;
     border-radius: 10px 10px 0 0;
   }
-
   .list-mask {
     position: fixed;
     top: 0;
@@ -376,21 +387,17 @@
     z-index: 1000;
     background: rgba(7, 17, 27, 0.6);
   }
-
   .listFold-enter-active {
     opacity: 1;
     transition: all 0.4s;
   }
-
   .listFold-leave-active {
     opacity: 0;
     transition: all 0.4s;
   }
-
   .listFold-enter {
     opacity: 0;
   }
-
   .listFold-leave {
     opacity: 1;
   }

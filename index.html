@@ -3,10 +3,32 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>lv_shop</title>
+    <title>露电商城</title>
+    <script src="https://www.ludianvr.com/ldvr/h5/js/jquery.js?v=123"></script>
+    <script src="https://www.ludianvr.com/ldvr/h5/js/config.js?v=123"></script>
+    <script src="https://www.ludianvr.com/ldvr/h5/js/wxUser.js?v=123"></script>
+    <script src="https://www.ludianvr.com/ldvr/h5/js/util.js?v=123"></script>
+    <script src="https://www.ludianvr.com/ldvr/h5/js/wxShare.js?v=123"></script>
   </head>
   <body>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <script>
+      window.wxUserObj = {
+        openid:"ohC2k1AxAXB4tG8wFO_ao36ZrmlA"
+      };
+
+//      window.gg.wxUser.getUserInfo(function (res) {
+//        wxUserObj.openid = res.openid;
+//      });
+
+      window.shareManage.init({
+        title: "露电VR消防安全教育体验邀请函",
+        desc: "您的好友邀请您一起借助VR技术学习防火知识、灭火方式、逃生方法。体验一次  平安一生！",
+        imgUrl: 'https://www.ludianvr.com/ldvr/h5/ldvr/images/share_img.png',
+        link: 'https://www.ludianvr.com/ldvr/h5/ldvr/weixin.html'
+      });
+
+    </script>
   </body>
 </html>

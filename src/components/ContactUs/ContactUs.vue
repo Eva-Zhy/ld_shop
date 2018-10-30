@@ -14,5 +14,6 @@
     float: left;
     margin-top: 15px;
     text-align: center;
+    color: #9d9d9d;
   }
 </style>
