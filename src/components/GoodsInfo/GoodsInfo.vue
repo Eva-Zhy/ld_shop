@@ -42,6 +42,7 @@
             <router-link to="/shopcar">
               <div class="shopcar_img" @click="changePageStatus1">
                 <img class="img100" src="https://www.ludianvr.com/ldvr/h5/shop/img/gwc2.png"/>
+                <div v-if="$store.state.shopCarData.length!=0" class="shopcar_num">{{$store.state.shopCarData.length}}</div>
               </div>
             </router-link>
           </div>
@@ -108,7 +109,7 @@
       },
       show() {
         this.showFlag = true;
-        this.$http.post("https://ludianvr.com/test/wxmarket/commonityconfig",
+        this.$http.post(this.$store.state.webServer+"wxmarket/commonityconfig",
           {
             md5: this.$store.state.selectedMd5
           },
@@ -152,6 +153,21 @@
     height: 30px;
     width: 30px;
     margin-top: 10px;
+  }
+
+  .shopcar_num{
+    position: absolute;
+    right: 3%;
+    width: 20px;
+    height: 20px;
+    top: 5%;
+    border-radius: 50%;
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+    line-height: 20px;
+    border: 1px solid #fff;
+    background-color: #e61717;
   }
 
   .bar_btn {

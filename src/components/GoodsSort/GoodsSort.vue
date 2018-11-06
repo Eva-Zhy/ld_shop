@@ -19,7 +19,7 @@
       console.log(this.$route.query.name);
       this.$store.state.sortName = this.$route.query.name;
       this.sortIndex = this.$route.query.index;
-      this.$http.post("https://ludianvr.com/test/wxmarket/goodsmore",
+      this.$http.post(this.$store.state.webServer+"wxmarket/goodsmore",
         {category: this.$route.query.name},
         {emulateJSON: true})
         .then(

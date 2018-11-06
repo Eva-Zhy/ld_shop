@@ -56,13 +56,13 @@
     height: 20px;
     margin-top: 10px;
     line-height: 20px;
-    width: 60px;
+    /*width: 60px;*/
     text-align: center;
-    border-left: 1px solid sandybrown;
-    border-right: 1px solid sandybrown;
+    /*border-left: 1px solid sandybrown;*/
+    /*border-right: 1px solid sandybrown;*/
   }
 
   .nav_data_item:nth-child(1) {
-    margin-left: 30px;
+    margin-left: 8px;
   }
 </style>

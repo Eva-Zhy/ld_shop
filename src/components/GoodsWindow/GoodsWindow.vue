@@ -1,17 +1,17 @@
 <template>
   <div class="window_v">
     <div v-if="windowType == 'home'">
-    <div class="window_data" v-for="(item,index) in windowData" :key="index">
-      <div class="window_img" @click="goGoodsInfo(item.md5)">
-        <img class="img100" :src="item.pic_url"/>
+      <div class="window_data" v-for="(item,index) in windowData" :key="index" @click="goGoodsInfo(item.md5)">
+        <div class="window_img">
+          <img class="img100" :src="item.pic_url"/>
+        </div>
+        <div class="window_name">
+          {{item.name}}
+        </div>
+        <div class="window_price">
+          <span>¥{{item.price[0]}}</span><span v-if="item.price[1]">-{{item.price[1]}}</span>
+        </div>
       </div>
-      <div class="window_name">
-        {{item.name}}
-      </div>
-      <div class="window_price">
-        <span>¥{{item.price[0]}}</span><span v-if="item.price[1]">-{{item.price[1]}}</span>
-      </div>
-    </div>
     </div>
 
     <div v-if="windowType == 'sort'">
@@ -37,7 +37,7 @@
       windowData: {
         type: Array
       },
-      windowType:"",
+      windowType: "",
       sortIndex: 0
     },
     methods: {
@@ -90,7 +90,7 @@
     width: 100%;
     float: left;
     margin-top: 5px;
-    color: #cd8870;
+    color: #ff734d;
     font-size: 13px;
     text-align: center;
   }

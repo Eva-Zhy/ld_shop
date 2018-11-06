@@ -4,6 +4,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    webServer: "https://ludianvr.com/",
     show: false,
     sortName:'',
     sortIndex: 0,

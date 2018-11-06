@@ -45,9 +45,12 @@
           <div class="suer" @click="suer">
             确定
           </div>
-          <div class="suer" @click="cancel" style="margin-left: 5.5%; background-color: #b6b6b6">
-            取消
-          </div>
+          <!--<div class="suer" @click="cancel" style="margin-left: 5.5%; background-color: #b6b6b6">-->
+            <!--取消-->
+          <!--</div>-->
+        </div>
+        <div class="cancel" @click="cancel">
+          <img src="./cha.png" class="img100" />
         </div>
       </div>
     </transition>
@@ -221,8 +224,15 @@
 </script>
 
 <style scoped>
+  .cancel{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
   .suer {
-    width: 42%;
+    width: 90%;
     height: 40px;
     line-height: 40px;
     text-align: center;
@@ -231,7 +241,7 @@
     margin-left: 5%;
     margin-top: 5px;
     background-color: #ff7049;
-    border-radius: 15px;
+    border-radius: 5px;
   }
   .btn_div {
     width: 100%;
@@ -240,33 +250,33 @@
   }
   .num {
     width: 30px;
-    height: 15px;
-    line-height: 13px;
+    height: 20px;
+    line-height: 18px;
     text-align: center;
     float: left;
-    font-size: 11px;
+    font-size: 12px;
   }
   .jian {
     width: 20px;
-    height: 15px;
-    line-height: 12.5px;
+    height: 20px;
+    line-height: 17px;
     text-align: center;
     float: left;
-    font-size: 12px;
+    font-size: 27px;
   }
   .jia {
     width: 20px;
-    height: 15px;
-    line-height: 12.5px;
+    height: 20px;
+    line-height: 17px;
     text-align: center;
     float: right;
-    font-size: 12px;
+    font-size: 22px;
   }
   .add_div {
     width: 70px;
-    height: 15px;
+    height: 20px;
     float: right;
-    margin-top: 10px;
+    margin-top: 7px;
     margin-right: 8%;
     border-radius: 5px;
     border: 1px solid #d7d7d7;
@@ -289,19 +299,20 @@
   .item {
     width: auto;
     padding: 2px 10px;
-    border: 1px solid #ff7049;
+    border: 1px solid #e2e2e2;
     float: left;
     margin-right: 15px;
     margin-top: 10px;
     border-radius: 5px;
     font-size: 12px;
+    background-color: #e2e2e2;
   }
   .item_sel {
     width: auto;
     padding: 2px 10px;
     border: 1px solid #ff7049;
-    background-color: #ff7049;
-    color: #fff;
+    background-color: #fff9f8;
+    color: #ff7049;
     float: left;
     margin-right: 15px;
     margin-top: 10px;
@@ -335,17 +346,22 @@
     width: 100%;
     height: 30px;
     float: left;
+    font-size: 15px;
   }
   .inventory {
     width: 100%;
     height: 30px;
     float: left;
+    color: #b7b7b7;
+    font-size: 15px;
   }
   .price {
     width: 100%;
     height: 30px;
     float: left;
     margin-top: 15px;
+    font-size: 20px;
+    color: #ff734d;
   }
   .goods_info {
     width: 60%;

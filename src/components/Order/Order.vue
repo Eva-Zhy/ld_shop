@@ -111,7 +111,7 @@
           }
           console.log(commodity);
           if (commodity != "") {
-            this.$http.post("https://ludianvr.com/test/wxmarket/query", {
+            this.$http.post(this.$store.state.webServer+"wxmarket/query", {
                 openid: wxUserObj.openid,
                 commodity: commodity
               }, {emulateJSON: true})
@@ -128,11 +128,10 @@
                       paySign: response.content.prepay_data.paySign, // 支付签名
                       success: function (res) {
                         if (res.errMsg == "chooseWXPay:ok") {
-//                          alert("ok")
-                          self.$toast("支付成功，订单已发至手机，未收到短信，请联系客服");
                           self.showFlag=false;
                           self.$emit('back');
                           self.$router.push("/");
+                          self.$toast("订购购买成功，请注意查收短信",4000);
                           self.$store.state.page_status = 0;
                         } else {
                           self.$toast("支付失败，请联系客服");
@@ -153,7 +152,7 @@
       },
       show() {
         this.showFlag = true;
-        this.$http.post("https://ludianvr.com/test/wxmarket/useraddress", {
+        this.$http.post(this.$store.state.webServer+"wxmarket/useraddress", {
             openid: wxUserObj.openid
           }, {emulateJSON: true})
           .then(

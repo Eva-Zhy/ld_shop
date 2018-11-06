@@ -36,6 +36,9 @@
               </div>
             </div>
           </div>
+          <div class="cancel" @click="deleteData(item)">
+            <img src="./cha.png" class="img100 cancel_img"/>
+          </div>
         </div>
         <div class="shop_car_bar">
           <div class="select_btn_v" @click="allSelect">
@@ -64,9 +67,7 @@
     data(){
       return {
         orderData: {},
-        shopCarData: [
-
-        ]
+        shopCarData: []
       }
     },
     computed: {
@@ -90,6 +91,16 @@
       }
     },
     methods: {
+      deleteData(item){
+        console.log(item);
+        console.log(this.$store.state.shopCarData);
+        for (let i = 0; i < this.$store.state.shopCarData.length; i++) {
+          if (item.md5 === this.$store.state.shopCarData[i].md5) {
+            this.$store.state.shopCarData.splice(i,1);
+          }
+        }
+        console.log(this.$store.state.shopCarData);
+      },
       jian(item){
         if (item.count > 1) {
           item.count--;
@@ -151,6 +162,24 @@
 </script>
 
 <style scoped>
+  .cancel {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-image: url("./xx.png");
+    background-size: 100% 100%;
+  }
+
+  .cancel_img {
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+  }
+
   .shopCarData0 {
     width: 100%;
     height: auto;
@@ -210,19 +239,19 @@
   .jian {
     width: 20px;
     height: 15px;
-    line-height: 12.5px;
+    line-height: 10.5px;
     text-align: center;
     float: left;
-    font-size: 12px;
+    font-size: 27px;
   }
 
   .jia {
     width: 20px;
     height: 15px;
-    line-height: 12.5px;
+    line-height: 11.5px;
     text-align: center;
     float: right;
-    font-size: 12px;
+    font-size: 21px;
   }
 
   .add_div {
@@ -278,6 +307,8 @@
     width: 60%;
     height: 100%;
     float: left;
+    position: relative;
+    overflow: hidden;
   }
 
   span {
@@ -345,5 +376,6 @@
     margin-top: 13px;
     border-radius: 12px;
     background-color: #fff;
+    overflow: hidden;
   }
 </style>

@@ -28,7 +28,7 @@
       })
     },
     created() {
-      this.$http.post("https://ludianvr.com/test/wxmarket/advertisement", {}, {emulateJSON: true})
+      this.$http.post(this.$store.state.webServer+"wxmarket/advertisement", {}, {emulateJSON: true})
         .then(
           (response) => {
             response = response.body;
@@ -48,6 +48,6 @@
   .swiper_shop {
     float: left;
     width: 100%;
-    height: 140px;
+    height: 160px;
   }
 </style>

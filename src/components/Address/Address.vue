@@ -153,7 +153,7 @@
         } else if (this.isNull0(this.address)) {
           this.$toast("详细地址有误");
         } else {
-          this.$http.post("https://ludianvr.com/test/wxmarket/edituseraddress", {
+          this.$http.post(this.$store.state.webServer+"wxmarket/edituseraddress", {
               openid: wxUserObj.openid,
               name:this.name,
               phonenumber:this.phone,

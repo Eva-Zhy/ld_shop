@@ -47,12 +47,11 @@
       };
     },
     created() {
-      this.$http.post("https://ludianvr.com/test/wxmarket/goods", {
+      this.$http.post(this.$store.state.webServer+"wxmarket/goods", {
         openid: wxUserObj.openid}, {emulateJSON: true})
         .then(
           (response) => {
             response = response.body;
-            console.log(response);
             if (response.status.state == 25001) {
               this.windowData = response.content.content;
             }
